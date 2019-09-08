@@ -1,0 +1,15 @@
+#|-*- mode:lisp -*-|#
+(in-package :cl-user)
+(defpackage :lake.user
+  (:use :cl :lake :cl-syntax)
+  (:shadowing-import-from :lake
+						  :directory))
+(in-package :lake.user)
+
+(use-syntax :interpol)
+ ;;; here follow your tasks...
+(task "test" ()
+	  (ql:quickload '(:prove :cl-ppcre))
+	  (load #P"spam-filter.asd")
+	  (load #P"spam-filter-test.asd")
+	  (asdf:test-system :spam-filter-test))
